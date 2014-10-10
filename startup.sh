@@ -20,8 +20,8 @@ else
         /sbin/setuser postgres $POSTGRESQL_BIN --single \
                 --config-file=$POSTGRESQL_CONFIG_FILE \
                 <<< "ALTER USER dspace WITH PASSWORD 'dspace';" &>/dev/null
-  
-        sed -i 's/ssl = true/ssl = false/' /etc/postgresql/9.3/main/postgresql.conf
+        #maybe different conf for this container ... 
+        #sed -i 's/ssl = true/ssl = false/' /etc/postgresql/9.3/main/postgresql.conf
         
         #needed for fix problem with ubuntu and cron
         update-locale 
