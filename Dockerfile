@@ -8,7 +8,11 @@ ENV HOME /root
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN apt-get update && apt-get install -y -q xxxxxxxxxxxxx \
+RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+RUN apt-get update && apt-get install -y -q --force-yes python-software-properties \
+                                            software-properties-common \
+                                            postgresql \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -24,7 +28,11 @@ RUN chmod +x /etc/my_init.d/startup.sh
 
 
 ##Adding Deamons to containers
-#refers to dockerfile_reference
+
+# to add postgresqld deamon to runit
+RUN mkdir /etc/service/postgresqld
+COPY postgresqld.sh /etc/service/postgresqld/run
+RUN chmod +x /etc/service/postgresqld/run
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
