@@ -10,3 +10,6 @@
   echo "dspace:admin"|chpasswd
   mkdir /dspace
   chown dspace /dspace
+ 
+ #return the line # for it ... 
+ cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 
