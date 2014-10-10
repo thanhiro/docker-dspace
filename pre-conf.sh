@@ -7,6 +7,6 @@
 
   echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
   useradd -m dspace
-  echo "admin:admin"|passwd dspace # need to fix
+  echo "dspace:admin"|chpasswd
   mkdir /dspace
   chown dspace /dspace
