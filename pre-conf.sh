@@ -20,7 +20,7 @@
   wget http://sourceforge.net/projects/dspace/files/DSpace%20Stable/4.2/dspace-4.2-src-release.tar.gz
   tar -zxf dspace-4.2-src-release.tar.gz
   rm dspace-4.2-src-release.tar.gz
-  cd /build/dspace-4.2-src-release
+  cd /build/dspace-4.2-src-release/dspace
   mvn -U package
   cd dspace/target/dspace-4.1-build
   ant fresh_install
