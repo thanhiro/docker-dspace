@@ -11,7 +11,7 @@
   ln -s /usr/share/maven3/bin/mvn /usr/bin/mvn
   
   
-  echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
+  
   useradd -m dspace
   echo "dspace:admin"|chpasswd
   mkdir /dspace
@@ -21,13 +21,14 @@
   POSTGRESQL_BIN=/usr/lib/postgresql/9.3/bin/postgres
   POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.3/main/postgresql.conf
 
-     
   /sbin/setuser postgres $POSTGRESQL_BIN --single \
                 --config-file=$POSTGRESQL_CONFIG_FILE \
                   <<< "CREATE USER dspace WITH SUPERUSER;" &>/dev/null
   /sbin/setuser postgres $POSTGRESQL_BIN --single \
                 --config-file=$POSTGRESQL_CONFIG_FILE \
                 <<< "ALTER USER dspace WITH PASSWORD 'dspace';" &>/dev/null
+                
+  echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
   setuser dspace createdb -U dspace -E UNICODE dspace 
   
   a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
