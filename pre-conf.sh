@@ -4,7 +4,13 @@
 #reason of this script is that dockerfile only execute one command at the time but we need sometimes at the moment we create 
 #the docker image to run more that one software for expecified configuration like when you need mysql running to chnage or create
 #database for the container ...
-
+  
+  # need to install maven3
+  wget http://ppa.launchpad.net/natecarlson/maven3/ubuntu/pool/main/m/maven3/maven3_3.2.1-0~ppa1_all.deb
+  dpkg -i  maven3_3.2.1-0~ppa1_all.deb
+  ln -s /usr/share/maven3/bin/mvn /usr/bin/maven
+  
+  
   echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
   useradd -m dspace
   echo "dspace:admin"|chpasswd
