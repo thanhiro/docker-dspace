@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y -q --force-yes python-software-properti
                                             postgresql \
                                             openjdk-7-jdk \
                                             tomcat7 \
-                                            ant maven2 \
+                                            ant \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
