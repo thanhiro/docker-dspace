@@ -11,13 +11,13 @@
   ln -s /usr/share/maven3/bin/mvn /usr/bin/mvn
   
   
-  
+  # created user
   useradd -m dspace
   echo "dspace:admin"|chpasswd
   mkdir /dspace
   chown dspace /dspace
   
-  
+  #conf database before build and installation of dspace
   POSTGRESQL_BIN=/usr/lib/postgresql/9.3/bin/postgres
   POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.3/main/postgresql.conf
 
@@ -31,9 +31,11 @@
   echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
   /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
   
+  #conf tomcat7 for dspace
   a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
   sed -i "$((a-1))r /tmp/dspace_tomcat7.conf" /etc/tomcat7/server.xml
   
+  # build dspace and install
   mkdir /build
   chmod -R 770 /build
   cd /build
@@ -43,7 +45,10 @@
   cd /build/dspace-4.2-src-release
   mvn -U package
   cd dspace/target/dspace-4.1-build
+  #need database running for this command to work ...
   ant fresh_install
   chown tomcat7:tomcat7 /dspace -R
   #this need some help for no interractive
   /dspace/bin/dspace create-administrator 
+  #stop database ... after install ... 
+  
