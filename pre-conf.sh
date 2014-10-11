@@ -53,3 +53,7 @@
   /dspace/bin/dspace create-administrator 
   #stop database ... after install ... 
   
+  apt-get clean \
+  rm -rf /tmp/* /var/tmp/* \
+  rm -rf /var/lib/apt/lists/*
+  
