@@ -18,6 +18,16 @@
   chown dspace /dspace
   
   setuser dspace createdb -U dspace -E UNICODE dspace 
+  POSTGRESQL_BIN=/usr/lib/postgresql/9.3/bin/postgres
+  POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.3/main/postgresql.conf
+
+     
+  /sbin/setuser postgres $POSTGRESQL_BIN --single \
+                --config-file=$POSTGRESQL_CONFIG_FILE \
+                  <<< "CREATE USER dspace WITH SUPERUSER;" &>/dev/null
+  /sbin/setuser postgres $POSTGRESQL_BIN --single \
+                --config-file=$POSTGRESQL_CONFIG_FILE \
+                <<< "ALTER USER dspace WITH PASSWORD 'dspace';" &>/dev/null
   
   a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
   sed -i "$((a-1))r /tmp/dspace_tomcat7.conf" /etc/tomcat7/server.xml
