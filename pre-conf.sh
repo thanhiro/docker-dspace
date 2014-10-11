@@ -17,6 +17,8 @@
   mkdir /dspace
   chown dspace /dspace
   
+  setuser dspace createdb -U dspace -E UNICODE dspace 
+  
   a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
   sed -i "$((a-1))r /tmp/dspace_tomcat7.conf" /etc/tomcat7/server.xml
   
