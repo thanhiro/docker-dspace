@@ -29,7 +29,7 @@
                 <<< "ALTER USER dspace WITH PASSWORD 'dspace';" &>/dev/null
                 
   echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
-  setuser dspace createdb -U dspace -E UNICODE dspace 
+  /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
   
   a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
   sed -i "$((a-1))r /tmp/dspace_tomcat7.conf" /etc/tomcat7/server.xml
