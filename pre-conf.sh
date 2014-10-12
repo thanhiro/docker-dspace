@@ -9,6 +9,7 @@
   wget http://ppa.launchpad.net/natecarlson/maven3/ubuntu/pool/main/m/maven3/maven3_3.2.1-0~ppa1_all.deb
   dpkg -i  maven3_3.2.1-0~ppa1_all.deb
   ln -s /usr/share/maven3/bin/mvn /usr/bin/mvn
+  rm maven3_3.2.1-0~ppa1_all.deb
   
   # created user
   useradd -m dspace
@@ -19,6 +20,15 @@
   #conf tomcat7 for dspace
   a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
   sed -i "$((a-1))r /tmp/dspace_tomcat7.conf" /etc/tomcat7/server.xml
+  
+  mkdir /build
+        chmod -R 770 /build
+        cd /build
+        wget http://sourceforge.net/projects/dspace/files/DSpace%20Stable/4.2/dspace-4.2-src-release.tar.gz
+        tar -zxf dspace-4.2-src-release.tar.gz
+        rm dspace-4.2-src-release.tar.gz
+        cd /build/dspace-4.2-src-release
+        mvn -U package
 
   apt-get clean
   rm -rf /tmp/* /var/tmp/*
