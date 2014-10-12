@@ -35,15 +35,7 @@
   a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
   sed -i "$((a-1))r /tmp/dspace_tomcat7.conf" /etc/tomcat7/server.xml
   
-  # build dspace and install
-  mkdir /build
-  chmod -R 770 /build
-  cd /build
-  wget http://sourceforge.net/projects/dspace/files/DSpace%20Stable/4.2/dspace-4.2-src-release.tar.gz
-  tar -zxf dspace-4.2-src-release.tar.gz
-  rm dspace-4.2-src-release.tar.gz
-  cd /build/dspace-4.2-src-release
-  mvn -U package
+  
   
   
   
