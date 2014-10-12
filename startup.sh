@@ -7,6 +7,20 @@ if [ -f /etc/configured ]; then
         echo 'already configured'
 else
         #code that need to run only one time ....
+        
+        #conf database before build and installation of dspace
+        POSTGRESQL_BIN=/usr/lib/postgresql/9.3/bin/postgres
+        POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.3/main/postgresql.conf
+
+        /sbin/setuser postgres $POSTGRESQL_BIN --single \
+                --config-file=$POSTGRESQL_CONFIG_FILE \
+                  <<< "CREATE USER dspace WITH SUPERUSER;" &>/dev/null
+        /sbin/setuser postgres $POSTGRESQL_BIN --single \
+                --config-file=$POSTGRESQL_CONFIG_FILE \
+                <<< "ALTER USER dspace WITH PASSWORD 'dspace';" &>/dev/null
+                
+        echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
+        /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
         # build dspace and install
         mkdir /build
         chmod -R 770 /build
