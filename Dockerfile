@@ -57,16 +57,12 @@ RUN chmod +x /sbin/backup
 VOLUME /var/backups
 
 
-#add files and script that need to be use for this container
-#include conf file relate to service/daemon 
-#additionsl tools to be use internally 
-
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
-EXPOSE #ports
+EXPOSE 8080
 
 #creatian of volume 
-VOLUME 
+#VOLUME 
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
