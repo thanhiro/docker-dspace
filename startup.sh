@@ -24,6 +24,11 @@ else
                 <<< "ALTER USER dspace WITH PASSWORD 'dspace';" &>/dev/null
                 
         echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
+        
+       /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres -D /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf >>/var/log/postgresd.log 2>&1
+
+        sleep 10s
+        
         /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
         # build dspace and install
         mkdir /build
@@ -42,7 +47,10 @@ else
          #this need some help for no interractive
          /dspace/bin/dspace create-administrator 
          #stop database ... after install ... 
-  
+        
+        killall postgres
+        sleep 10s
+        
         #needed for fix problem with ubuntu and cron
         update-locale 
         date > /etc/configured
