@@ -11,6 +11,8 @@
   ln -s /usr/share/maven3/bin/mvn /usr/bin/mvn
   rm maven3_3.2.1-0~ppa1_all.deb
   
+  echo "mark 1 ..................."
+  
   # created user
   useradd -m dspace
   echo "dspace:admin"|chpasswd
@@ -21,14 +23,21 @@
   a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
   sed -i "$((a-1))r /tmp/dspace_tomcat7.conf" /etc/tomcat7/server.xml
   
+   echo "mark 2 ..................."
+  
   mkdir /build
         chmod -R 770 /build
         cd /build
         wget http://sourceforge.net/projects/dspace/files/DSpace%20Stable/4.2/dspace-4.2-src-release.tar.gz
         tar -zxf dspace-4.2-src-release.tar.gz
         rm dspace-4.2-src-release.tar.gz
+        
+        echo "mark 3 ..................."
+        
         cd /build/dspace-4.2-src-release
         mvn -U package
+        
+        echo "mark 4 ................."
         
     #conf database before build and installation of dspace
         POSTGRESQL_BIN=/usr/lib/postgresql/9.3/bin/postgres
@@ -47,12 +56,18 @@
                 
         echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
         
-       /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres  /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf >>/var/log/postgresd.log 2>&1 &
+         echo "mark 5 ..................."
+        
+       /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres -D  /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf >>/var/log/postgresd.log 2>&1 &
 
         sleep 10s
         
         /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
         # build dspace and install
+         
+        echo "mark 6 ..................."
+         
+        
         
         cd /build/dspace-4.2-src-release/dspace/target/dspace-4.1-build
       
@@ -65,7 +80,7 @@
         sleep 10s
 
   apt-get clean
-  rm -rf /build
+  #rm -rf /build   # for checking status ...
   rm -rf /tmp/* /var/tmp/*
   rm -rf /var/lib/apt/lists/*
   
