@@ -69,7 +69,7 @@
          
         
         
-        cd /build/dspace-4.2-src-release/dspace/target/dspace-4.1-build
+        cd /build/dspace-4.2-src-release/dspace/target/dspace-4.2-build
       
         ant fresh_install
         chown tomcat7:tomcat7 /dspace -R
