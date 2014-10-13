@@ -62,6 +62,8 @@
 
         sleep 10s
         
+          echo "mark 5.5 ..................."
+        
         /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
         # build dspace and install
          
