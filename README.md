@@ -1,7 +1,7 @@
 docker-dspace
 =============
 
-docker container for DSpace application ..
+docker container for DSpace v.4.2
 
 To run container by :
 
@@ -13,4 +13,8 @@ docker-bash container_id
 
 /dspace/bin/dspace create-administrator 
 
-docker-bash is available by installing quantumobject/tools  from https://github.com/QuantumObject/docker-tools
+
+after that check with your brownser to http://ip:8080/xmlui/
+
+
+note: docker-bash is available by installing quantumobject/tools  from https://github.com/QuantumObject/docker-tools
