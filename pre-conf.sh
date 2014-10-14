@@ -42,21 +42,14 @@
                 <<< "ALTER USER dspace WITH PASSWORD 'dspace';" &>/dev/null
                 
         echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
-        
-       /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres -D  /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf >>/var/log/postgresd.log 2>&1 &
-
+        /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres -D  /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf >>/var/log/postgresd.log 2>&1 &
         sleep 10s
         /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
-        # build dspace and install
         
+        # build dspace and install
         cd /build/dspace-4.2-src-release/dspace/target/dspace-4.2-build
-      
         ant fresh_install
         chown tomcat7:tomcat7 /dspace -R
-        
-        #this need some help for no interractive
-        # /dspace/bin/dspace create-administrator 
-     
         killall postgres
         sleep 10s
 
