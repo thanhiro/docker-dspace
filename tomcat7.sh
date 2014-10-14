@@ -6,7 +6,7 @@ CATALINA_OPTS=${CATALINA_OPTS:-"-Xms128m -Xmx1024m -XX:PermSize=128m -XX:MaxPerm
 
 export CATALINA_OPTS="${CATALINA_OPTS}"
 export CATALINA_HOME="/usr/share/tomcat7"
-export CATALINA_BASE="var/lib/tomcat7"
+export CATALINA_BASE="/var/lib/tomcat7"
 
 cat << EOF > /etc/tomcat7/tomcat-users.xml
 <?xml version='1.0' encoding='utf-8'?>
