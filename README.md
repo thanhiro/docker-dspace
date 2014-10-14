@@ -9,12 +9,9 @@ docker run -d -p 8080:8080 quantumobject/docker-dspace
 
 You need to run this command from the container to create the administrator user ... for that you need to use command :
 
-docker-bash container_id         
-
-/dspace/bin/dspace create-administrator 
+docker-bash container_id  /dspace/bin/dspace create-administrator 
 
 
-after that check with your brownser to http://ip:8080/xmlui/
-
+after that check with your brownser to http://ip:8080/xmlui/  and http://ip:8080/jspui/
 
 note: docker-bash is available by installing quantumobject/tools  from https://github.com/QuantumObject/docker-tools
