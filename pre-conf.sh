@@ -25,10 +25,12 @@
     
         cd /build/dspace-4.2-src-release
         mvn -U package
+        #work around for AUFS related bug. https://github.com/QuantumObject/docker-dspace/issues/2
+        mkdir /etc/ssl/private-copy; mv /etc/ssl/private/* /etc/ssl/private-copy/; rm -r /etc/ssl/private; mv /etc/ssl/private-copy /etc/ssl/private; chmod -R 0700 /etc/ssl/private; chown -R postgres /etc/ssl/private
         
     #conf database before build and installation of dspace
-        POSTGRESQL_BIN=/usr/lib/postgresql/9.3/bin/postgres
-        POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.3/main/postgresql.conf
+        POSTGRESQL_BIN=/usr/lib/postgresql/9.4/bin/postgres
+        POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.4/main/postgresql.conf
         
         /sbin/setuser postgres $POSTGRESQL_BIN --single \
                 --config-file=$POSTGRESQL_CONFIG_FILE \
@@ -41,8 +43,8 @@
                 --config-file=$POSTGRESQL_CONFIG_FILE \
                 <<< "ALTER USER dspace WITH PASSWORD 'dspace';" &>/dev/null
                 
-        echo "local all dspace md5" >> /etc/postgresql/9.3/main/pg_hba.conf
-        /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres -D  /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf >>/var/log/postgresd.log 2>&1 &
+        echo "local all dspace md5" >> /etc/postgresql/9.4/main/pg_hba.conf
+        /sbin/setuser postgres /usr/lib/postgresql/9.4/bin/postgres -D  /var/lib/postgresql/9.4/main -c config_file=/etc/postgresql/9.4/main/postgresql.conf >>/var/log/postgresd.log 2>&1 &
         sleep 10s
         /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
         
