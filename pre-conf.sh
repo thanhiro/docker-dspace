@@ -49,7 +49,7 @@
         /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
         
         # build dspace and install
-        cd /build/dspace-5.0-src-release/dspace/target/dspace-5.0-build
+        cd /build/dspace-5.0-src-release/dspace/target/dspace-installer
         ant fresh_install
         chown tomcat7:tomcat7 /dspace -R
         killall postgres
