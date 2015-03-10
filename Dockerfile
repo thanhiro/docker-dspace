@@ -1,14 +1,11 @@
 #name of container: docker-dspace
-#versison of container: 0.5.1
+#versison of container: 0.5.2
 FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
-# Set correct environment variables.
-ENV HOME /root
-
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu utopic-backports main restricted " >> /etc/apt/sources.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
 RUN apt-get update && apt-get install -y -q --force-yes python-software-properties \
                                             software-properties-common \
