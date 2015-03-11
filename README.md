@@ -1,7 +1,7 @@
 docker-dspace
 =============
 
-docker container for DSpace v.5.0
+docker container for DSpace v.5.1
 
 To run container by :
 
