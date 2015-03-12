@@ -53,7 +53,7 @@ COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
 VOLUME /var/backups
 
-#script to execute after install configuration done ....
+#script to execute to create administrator account 
 COPY create-admin.sh /sbin/create-admin
 RUN chmod +x /sbin/create-admin
 
