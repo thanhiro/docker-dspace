@@ -5,11 +5,11 @@ docker container for DSpace v.5.1
 
 To run container by :
 
-docker run -d -p 8080:8080 quantumobject/docker-dspace
+    $ docker run -d -p 8080:8080 quantumobject/docker-dspace
 
 You need to run this command from the container to create the administrator user:
 
-docker exec -it container_id create-admin
+    $ docker exec -it container_id create-admin
 
 need respond (yes) to clean the database and the other question relate to create administrator account ..
 
