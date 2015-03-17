@@ -42,6 +42,6 @@ OAI
 
 More info about DSpace: [www.dspace.org][1]
 
-[1]:(www.dspace.org)
-[2]:(https://www.docker.com/)
-[3]:(https://wiki.duraspace.org/display/DSPACE/DSpace+Release+5.1+Status)
+[1]:http://www.dspace.org
+[2]:https://www.docker.com
+[3]:https://wiki.duraspace.org/display/DSPACE/DSpace+Release+5.1+Status
