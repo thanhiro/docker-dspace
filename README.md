@@ -1,6 +1,6 @@
 # docker-dspace
 
-Docker container for [DSpace 5.1][]
+Docker container for [DSpace 5.1][3]
 
 ## Install dependencies
 
@@ -40,10 +40,8 @@ OAI
 
 ## More Info
 
-More info about DSpace:
-
-[www.dspace.org][1]
+More info about DSpace: [www.dspace.org][1]
 
 [1]:(www.dspace.org)
 [2]:(https://www.docker.com/)
-[2]:(https://wiki.duraspace.org/display/DSPACE/DSpace+Release+5.1+Status)
+[3]:(https://wiki.duraspace.org/display/DSPACE/DSpace+Release+5.1+Status)
