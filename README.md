@@ -1,20 +1,47 @@
-docker-dspace
-=============
+# docker-dspace
 
-Docker container for DSpace v.5.1
+Docker container for [DSpace 5.1][3]
 
-To run container by:
+## Install dependencies
+
+  - [Docker][2]
+
+To install docker in Ubuntu 14.04 use the commands:
+
+    $ sudo apt-get update
+    $ sudo apt-get install docker.io
+
+## Usage
+
+To run container use the command below:
 
     $ docker run -d -p 8080:8080 quantumobject/docker-dspace
+
+### Creating a administrator user
 
 You need to run this command from the container to create the administrator user:
 
     $ docker exec -it container_id create-admin
 
-need respond (yes) to clean the database and the other question relate to create administrator account ..
+And respond (yes) to clean the database and the other question relate to create administrator account.
 
-After that check with your browser at http://host_ip:8080/xmlui/  and http://host_ip:8080/jspui/
+## Accessing the DSpace applications:
 
-More info about DSpace:
+After that check with your browser at addresses:
 
-[www.dspace.org](www.dspace.org)
+XMLUI
+ - **http://host_ip:8080/xmlui/** 
+ 
+JSPUI
+ - **http://host_ip:8080/jspui/**
+ 
+OAI
+ - **http://host_ip:8080/oai/**
+
+## More Info
+
+More info about DSpace: [www.dspace.org][1]
+
+[1]:(www.dspace.org)
+[2]:(https://www.docker.com/)
+[3]:(https://wiki.duraspace.org/display/DSPACE/DSpace+Release+5.1+Status)
