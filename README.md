@@ -11,6 +11,8 @@ To install docker in Ubuntu 14.04 use the commands:
     $ sudo apt-get update
     $ sudo apt-get install docker.io
 
+ To install docker in other operating systems check [docker online documentation][4]
+ 
 ## Usage
 
 To run container use the command below:
@@ -40,8 +42,11 @@ OAI
 
 ## More Info
 
-More info about DSpace: [www.dspace.org][1]
+About DSpace: [www.dspace.org][1]
+To help improve this container [docker-dspace][5]
 
 [1]:http://www.dspace.org
 [2]:https://www.docker.com
 [3]:https://wiki.duraspace.org/display/DSPACE/DSpace+Release+5.1+Status
+[4]:http://docs.docker.com
+[5]:https://github.com/QuantumObject/docker-dspace
