@@ -19,7 +19,7 @@ To run container use the command below:
 
     $ docker run -d -p 8080:8080 quantumobject/docker-dspace
 
-### Creating a administrator user
+### Creating an administrator user
 
 You need to run this command from the container to create the administrator user:
 
