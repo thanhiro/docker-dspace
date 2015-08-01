@@ -1,6 +1,6 @@
 # docker-dspace
 
-Docker container for [DSpace 5.1][3]
+Docker container for [DSpace 5.3][3]
 
 "DSpace is the software of choice for academic, non-profit, and commercial organizations building open digital repositories."
 
