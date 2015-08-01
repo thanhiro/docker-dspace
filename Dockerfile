@@ -31,7 +31,7 @@ RUN chmod +x /etc/service/postgresqld/run
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
-COPY dspace_tomcat7.conf /tmp/dspace_tomcat7.conf
+COPY dspace_tomcat8.conf /tmp/dspace_tomcat8.conf
 COPY pre-conf.sh /sbin/pre-conf
 RUN chmod +x /sbin/pre-conf \
     && /bin/bash -c /sbin/pre-conf \
