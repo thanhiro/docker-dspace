@@ -10,6 +10,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F
 RUN apt-get update && apt-get install -y -q --force-yes python-software-properties \
                                             software-properties-common \
                                             postgresql \
+                                            openjdk-7-jdk \
                                             ant \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
