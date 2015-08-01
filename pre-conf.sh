@@ -13,17 +13,17 @@
   chown dspace /dspace
 
   #conf tomcat7 for dspace
-  a=$(cat /etc/tomcat7/server.xml | grep -n "</Host>"| cut -d : -f 1 )
-  sed -i "$((a-1))r /tmp/dspace_tomcat7.conf" /etc/tomcat7/server.xml
+  a=$(cat /etc/tomcat8/server.xml | grep -n "</Host>"| cut -d : -f 1 )
+  sed -i "$((a-1))r /tmp/dspace_tomcat8.conf" /etc/tomcat8/server.xml
 
   mkdir /build
         chmod -R 770 /build
         cd /build
-        wget http://sourceforge.net/projects/dspace/files/DSpace%20Stable/5.1/dspace-5.1-src-release.tar.gz
-        tar -zxf dspace-5.1-src-release.tar.gz
-        rm dspace-5.1-src-release.tar.gz
+        wget https://github.com/DSpace/DSpace/releases/download/dspace-5.3/dspace-5.3-src-release.tar.gz
+        tar -zxf dspace-5.3-src-release.tar.gz
+        rm dspace-5.3-src-release.tar.gz
     
-        cd /build/dspace-5.1-src-release
+        cd /build/dspace-5.3-src-release
         mvn -U package
         #work around for AUFS related bug. https://github.com/QuantumObject/docker-dspace/issues/2
         mkdir /etc/ssl/private-copy; mv /etc/ssl/private/* /etc/ssl/private-copy/; rm -r /etc/ssl/private; mv /etc/ssl/private-copy /etc/ssl/private; chmod -R 0700 /etc/ssl/private; chown -R postgres /etc/ssl/private
@@ -31,6 +31,10 @@
     #conf database before build and installation of dspace
         POSTGRESQL_BIN=/usr/lib/postgresql/9.4/bin/postgres
         POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.4/main/postgresql.conf
+        
+        mkdir -p /var/run/postgresql/9.4-main.pg_stat_tmp
+        chown postgres /var/run/postgresql/9.4-main.pg_stat_tmp
+        chgrp postgres /var/run/postgresql/9.4-main.pg_stat_tmp
         
         /sbin/setuser postgres $POSTGRESQL_BIN --single \
                 --config-file=$POSTGRESQL_CONFIG_FILE \
@@ -49,9 +53,9 @@
         /sbin/setuser dspace createdb -U dspace -E UNICODE dspace 
         
         # build dspace and install
-        cd /build/dspace-5.1-src-release/dspace/target/dspace-installer
+        cd /build/dspace-5.3-src-release/dspace/target/dspace-installer
         ant fresh_install
-        chown tomcat7:tomcat7 /dspace -R
+        chown tomcat8:tomcat8 /dspace -R
         killall postgres
         sleep 10s
 
