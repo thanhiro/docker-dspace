@@ -1,6 +1,6 @@
 #name of container: docker-dspace
 #versison of container: 0.5.2
-FROM quantumobject/docker-baseimage
+FROM quantumobject/docker-tomcat8
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
@@ -10,8 +10,6 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F
 RUN apt-get update && apt-get install -y -q --force-yes python-software-properties \
                                             software-properties-common \
                                             postgresql \
-                                            openjdk-7-jdk \
-                                            tomcat7 \
                                             ant \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
@@ -25,18 +23,11 @@ RUN mkdir -p /etc/my_init.d
 COPY startup.sh /etc/my_init.d/startup.sh
 RUN chmod +x /etc/my_init.d/startup.sh
 
-
 ##Adding Deamons to containers
-
 # to add postgresqld deamon to runit
 RUN mkdir /etc/service/postgresqld
 COPY postgresqld.sh /etc/service/postgresqld/run
 RUN chmod +x /etc/service/postgresqld/run
-
-# to add tomcat7 deamon to runit
-RUN mkdir /etc/service/tomcat7
-COPY tomcat7.sh /etc/service/tomcat7/run
-RUN chmod +x /etc/service/tomcat7/run
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
@@ -45,7 +36,6 @@ COPY pre-conf.sh /sbin/pre-conf
 RUN chmod +x /sbin/pre-conf \
     && /bin/bash -c /sbin/pre-conf \
     && rm /sbin/pre-conf
-
 
 ##scritp that can be running from the outside using docker-bash tool ...
 ## for example to create backup for database with convitation of VOLUME   dockers-bash container_ID backup_mysql
@@ -60,9 +50,6 @@ RUN chmod +x /sbin/create-admin
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 8080
-
-#creatian of volume 
-#VOLUME 
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
