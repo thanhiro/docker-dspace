@@ -32,9 +32,9 @@
         POSTGRESQL_BIN=/usr/lib/postgresql/9.4/bin/postgres
         POSTGRESQL_CONFIG_FILE=/etc/postgresql/9.4/main/postgresql.conf
         
-        mkdir -p /var/run/postgresql/$POSTGRES_VERSION-main.pg_stat_tmp
-        chown postgres /var/run/postgresql/$POSTGRES_VERSION-main.pg_stat_tmp
-        chgrp postgres /var/run/postgresql/$POSTGRES_VERSION-main.pg_stat_tmp
+        mkdir -p /var/run/postgresql/9.4-main.pg_stat_tmp
+        chown postgres /var/run/postgresql/9.4-main.pg_stat_tmp
+        chgrp postgres /var/run/postgresql/9.4-main.pg_stat_tmp
         
         /sbin/setuser postgres $POSTGRESQL_BIN --single \
                 --config-file=$POSTGRESQL_CONFIG_FILE \
