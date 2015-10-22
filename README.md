@@ -48,8 +48,11 @@ About DSpace: [www.dspace.org][1]
 
 To help improve this container [docker-dspace][5]
 
+For additional info about us and our projects check our site [www.quantumobject.com][6]
+
 [1]:http://www.dspace.org
 [2]:https://www.docker.com
 [3]:https://wiki.duraspace.org/display/DSPACE/DSpace+Release+5.1+Status
 [4]:http://docs.docker.com
 [5]:https://github.com/QuantumObject/docker-dspace
+[6]:http://www.quantumobject.com
