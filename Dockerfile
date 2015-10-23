@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y -q --force-yes python-software-properti
                                             postgresql \
                                             openjdk-7-jdk \
                                             ant \
+                                            git \
+                                            unzip \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
