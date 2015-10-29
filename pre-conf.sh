@@ -25,8 +25,14 @@
     
         cd /build/dspace-5.3-src-release
         mvn package
-        #work around for AUFS related bug. https://github.com/QuantumObject/docker-dspace/issues/2
-        mkdir /etc/ssl/private-copy; mv /etc/ssl/private/* /etc/ssl/private-copy/; rm -r /etc/ssl/private; mv /etc/ssl/private-copy /etc/ssl/private; chmod -R 0700 /etc/ssl/private; chown -R postgres /etc/ssl/private
+      
+        # fix problem relate to postgresql
+        cd /var/lib/postgresql/9.4/main
+        cp /etc/ssl/certs/ssl-cert-snakeoil.pem server.crt
+        cp /etc/ssl/private/ssl-cert-snakeoil.key server.key
+        chown postgres *
+        chmod 640 server.crt server.key
+        cd /build/dspace-5.3-src-release
         
     #conf database before build and installation of dspace
         POSTGRESQL_BIN=/usr/lib/postgresql/9.4/bin/postgres
