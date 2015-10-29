@@ -6,7 +6,6 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc)-backports main restricted " >> /etc/apt/sources.list
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
 RUN apt-get update && apt-get install -y -q --force-yes python-software-properties \
                                             software-properties-common \
                                             postgresql \
