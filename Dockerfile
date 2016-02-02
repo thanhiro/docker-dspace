@@ -45,5 +45,7 @@ RUN chmod +x /sbin/create-admin
 # at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 8080
 
+EXPOSE 5432
+
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
